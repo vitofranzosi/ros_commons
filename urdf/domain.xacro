@@ -7,16 +7,16 @@
   Date: 06.11.2025
 -->
 
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- Predefined constants. -->
-  <xacro:property name="M_PI" value="${pi}"/>
-  <xacro:property name="M_PI_2" value="${0.5 * M_PI}"/>
-  <xacro:property name="DEG" value="${M_PI / 180.0}"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"> <!-- Definição do namespace xacro -->
+  <!-- Constantes Matemáticas -->
+  <xacro:property name="M_PI" value="${pi}"/> <!-- pi -->
+  <xacro:property name="M_PI_2" value="${0.5 * M_PI}"/> <!-- pi/2 -->
+  <xacro:property name="DEG" value="${M_PI / 180.0}"/> <!-- Grau para radiano -->
 
-  <!-- Default density for computing object mass based on volume. -->
-  <xacro:property name="DENSITY" value="200.0"/>
+  <!-- Valor padrão de densidade para sólidos (usado quando a massa não é especificada). -->
+  <xacro:property name="DENSITY" value="200.0"/> <!-- kg/m³ -->
 
-  <!-- Pre-defined material colors. -->
+  <!-- Cor dos Materiais -->
   <material name="Black">
     <color rgba="0.0 0.0 0.0 1.0"/>
   </material>
@@ -33,7 +33,7 @@
     <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
 
-  <!-- Placeholder inertial tensor. -->
+  <!--  Compute a zero inertial tensor. -->
   <xacro:macro
     name="inertia_none"
   >
@@ -188,92 +188,6 @@
     </xacro:solid_object>
   </xacro:macro>
 
-  <!-- Create a solid cuboid block of given parameters. -->
-  <xacro:macro
-    name="solid_block_red"
-    params="
-      name
-      x:=0.0
-      y:=0.0
-      z:=0.0
-      roll:=0.0
-      pitch:=0.0
-      yaw:=0.0
-      size_x:=1.0
-      size_y:=1.0
-      size_z:=1.0
-      mass:=-1.0
-      material:='Red'
-      visible:=true
-    "
-  >
-    <xacro:property name="mass_block" value="${mass if mass >= 0.0 else DENSITY * size_x * size_y * size_z}"/>
-
-    <xacro:solid_object
-      name="${name}"
-      x="${x}"
-      y="${y}"
-      z="${z}"
-      roll="${roll}"
-      pitch="${pitch}"
-      yaw="${yaw}"
-      mass="${mass_block}"
-      material="${material}"
-      visible="${visible}"
-    >
-      <xacro:inertia_block
-        mass="${mass_block}"
-        size_x="${size_x}"
-        size_y="${size_y}"
-        size_z="${size_z}"
-      />
-      <box size="${size_x} ${size_y} ${size_z}"/>
-    </xacro:solid_object>
-  </xacro:macro>
-
-  <!-- Create a solid cuboid block of given parameters. -->
-  <xacro:macro
-    name="solid_block_black"
-    params="
-      name
-      x:=0.0
-      y:=0.0
-      z:=0.0
-      roll:=0.0
-      pitch:=0.0
-      yaw:=0.0
-      size_x:=1.0
-      size_y:=1.0
-      size_z:=1.0
-      mass:=-1.0
-      material:='Black'
-      visible:=true
-    "
-  >
-    <xacro:property name="mass_block" value="${mass if mass >= 0.0 else DENSITY * size_x * size_y * size_z}"/>
-
-    <xacro:solid_object
-      name="${name}"
-      x="${x}"
-      y="${y}"
-      z="${z}"
-      roll="${roll}"
-      pitch="${pitch}"
-      yaw="${yaw}"
-      mass="${mass_block}"
-      material="${material}"
-      visible="${visible}"
-    >
-      <xacro:inertia_block
-        mass="${mass_block}"
-        size_x="${size_x}"
-        size_y="${size_y}"
-        size_z="${size_z}"
-      />
-      <box size="${size_x} ${size_y} ${size_z}"/>
-    </xacro:solid_object>
-  </xacro:macro>
-
   <!-- Create a solid cylinder of given parameters. -->
   <xacro:macro
     name="solid_cylinder"
@@ -328,7 +242,7 @@
       yaw:=0.0
       radius:=0.5
       mass:=-1.0
-      material:='Black'
+      material:='Grey'
       visible:=true
     "
   >

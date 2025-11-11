@@ -2,8 +2,9 @@
 
 <!--
   Gazebo extension utilities.
-
-  Author: Helio Perroni Filho
+  Autor original: Helio Perroni Filho
+  Adaptado por: Vito Rodrigues Franzosi
+  Date: 06.11.2025
 -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
