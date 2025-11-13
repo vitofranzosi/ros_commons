@@ -2,21 +2,21 @@
 
 <!--
   Model primitives.
-  Autor original: Helio Perroni Filho
-  Adaptado por: Vito Rodrigues Franzosi
+  Author: Helio Perroni Filho
+  Adapted by: Vito Rodrigues Franzosi
   Date: 06.11.2025
 -->
 
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"> <!-- Definição do namespace xacro -->
-  <!-- Constantes Matemáticas -->
-  <xacro:property name="M_PI" value="${pi}"/> <!-- pi -->
-  <xacro:property name="M_PI_2" value="${0.5 * M_PI}"/> <!-- pi/2 -->
-  <xacro:property name="DEG" value="${M_PI / 180.0}"/> <!-- Grau para radiano -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Predefined constants. -->
+  <xacro:property name="M_PI" value="${pi}"/>
+  <xacro:property name="M_PI_2" value="${0.5 * M_PI}"/>
+  <xacro:property name="DEG" value="${M_PI / 180.0}"/>
 
-  <!-- Valor padrão de densidade para sólidos (usado quando a massa não é especificada). -->
-  <xacro:property name="DENSITY" value="200.0"/> <!-- kg/m³ -->
+  <!-- Default density for computing object mass based on volume. -->
+  <xacro:property name="DENSITY" value="200.0"/>
 
-  <!-- Cor dos Materiais -->
+  <!-- Pre-defined material colors. -->
   <material name="Black">
     <color rgba="0.0 0.0 0.0 1.0"/>
   </material>
@@ -32,8 +32,7 @@
   <material name="Red">
     <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
-
-  <!--  Compute a zero inertial tensor. -->
+  <!-- Placeholder inertial tensor. -->
   <xacro:macro
     name="inertia_none"
   >
@@ -202,7 +201,7 @@
       radius:=0.5
       length:=1.0
       mass:=-1.0
-      material:='Black'
+      material:='Grey'
       visible:=true
     "
   >

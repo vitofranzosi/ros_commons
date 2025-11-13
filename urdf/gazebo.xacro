@@ -2,8 +2,8 @@
 
 <!--
   Gazebo extension utilities.
-  Autor original: Helio Perroni Filho
-  Adaptado por: Vito Rodrigues Franzosi
+  Author: Helio Perroni Filho
+  Adapted by: Vito Rodrigues Franzosi
   Date: 06.11.2025
 -->
 
@@ -121,9 +121,14 @@
       right_joint
       wheel_diameter
       wheel_separation
+      publish_odom:=false
     "
   >
     <gazebo>
+      <plugin name="${name}_joint_states" filename="libgazebo_ros_joint_state_publisher.so">
+        <joint_name>${right_joint}</joint_name>
+        <joint_name>${left_joint}</joint_name>
+      </plugin>
       <plugin name="${name}_controller" filename="libgazebo_ros_diff_drive.so">
         <update_rate>50</update_rate>
         <left_joint>${left_joint}</left_joint>
@@ -134,16 +139,11 @@
         <max_wheel_torque>20</max_wheel_torque>
         <max_wheel_acceleration>1.0</max_wheel_acceleration>
 
-        <command_topic>cmd_vel</command_topic>
-        <odometry_topic>odom</odometry_topic>
-
         <odometry_frame>odom</odometry_frame>
         <robot_base_frame>base_link</robot_base_frame>
 
-        <publish_odom>true</publish_odom>
-        <publish_odom_tf>true</publish_odom_tf>
-        <publish_wheel_tf>false</publish_wheel_tf>
-        <publish_wheel_joint_state>true</publish_wheel_joint_state>
+        <publish_odom>${publish_odom}</publish_odom>
+        <publish_odom_tf>${publish_odom}</publish_odom_tf>
       </plugin>
     </gazebo>
   </xacro:macro>
